@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMgtsTable extends Migration
+class CreateMgtsworksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateMgtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mgts', function (Blueprint $table) {
+        Schema::create('mgtsworks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('name');
-            $table->string('customerform');
+            $table->integer('name')->unsigned();
+            $table->foreign('name')->references('id')->on('mgts');
+            $table->string('mobile');
             $table->string('detail');
-            $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateMgtsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mgts');
+        Schema::dropIfExists('mgtsworks');
     }
 }

@@ -1,20 +1,23 @@
 @extends('layouts.app')
-<a href="{{ url('/workmgts') }}">workmgts</a>
 
 @section('content')
+
     <div class="container">
-        <form action="form" method="POST">
+        <form action="form2" method="POST">
           {{ csrf_field() }}
             <div class="form-group">
               <label class="control-label col-sm-7" for="name">Management Name:</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
-              </div>
+              <select id="name" name="name" class="form-control">
+                  <option value="">--- Select Management ---</option>
+                  @foreach($mgts as $mgt)
+                    <option value="{{$mgt->id}}"><!-- <?php if($mgt->name==$mgt->id){ echo 'selected';} ?> -->{{ $mgt->name }}</option>
+                  @endforeach        
+              </select>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-7" for="customerform">Customer Form:</label>
+              <label class="control-label col-sm-7" for="customerform">Mobile:</label>
               <div class="col-sm-10">          
-                <input type="text" class="form-control" id="customerform" placeholder="Enter customerform" name="customerform">
+                <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile">
               </div>
             </div>
             <div class="form-group">
