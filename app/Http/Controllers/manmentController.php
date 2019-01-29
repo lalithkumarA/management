@@ -47,15 +47,15 @@ class manmentController extends Controller
 
     public function delete($id){
         $mgts = mgt::findOrfail($id);
-        //     $mgts->delete();
-        // return back()->with('success','Something Delete Successfully Allowed');
-
-        try {
             $mgts->delete();
-            return back()->with('success','Something Delete Successfully Allowed');
-        } catch (\Illuminate\Database\QueryException $e) {
-             return back()->with('danger','Something went wrong! Delete Not Allowed!');
-        }             
+        return back()->with('success','Delete Successfully Allowed');
+
+        // try {
+        //     $mgts->delete();
+        //     return back()->with('success','Something Delete Successfully Allowed');
+        // } catch (\Illuminate\Database\QueryException $e) {
+        //      return back()->with('danger','Something went wrong! Delete Not Allowed!');
+        // }             
     } 
 
     //it's your new from create and show on the file display (localhost:8000/site.blade.php)view page file 
@@ -70,12 +70,33 @@ class manmentController extends Controller
         $tan->mobile = request()->mobile;
         $tan->detail = request()->detail;
         $tan->save();
-        return back()->with('success','Management Create Successfully');
+        return redirect('/viewshow')->with('success','Management Create Successfully');
     }
 
     public function viewshow(){
         $tan= mgtsworks::get()->all();
         return view('viewshow',compact('tan'));
-    }  
+    }
+
+    public function editworkmgts($id){
+        $tan = mgtsworks::findOrfail($id);
+        $mgts= mgt::get()->all();
+        return view('editworkmgts',compact('tan', 'mgts'));
+    }
+
+    public function updated($id, Request $request){      
+        $tan = mgtsworks::findorfail($id);
+        $tan->name = request('name');
+        $tan->mobile = request('mobile');
+        $tan->detail = request('detail');
+        $tan->save();
+        return redirect('/viewshow')->with('success','Updated Successfully');
+    }
+
+    public function deleted($id){
+        $tan = mgtsworks::findOrfail($id)->delete();
+        return back()->with('success','deleted Successfully Allowed');
+    }
+  
     
 }

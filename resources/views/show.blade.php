@@ -17,12 +17,14 @@
     <td>{{ $mgt->id }}</td>
     <td>{{ $mgt->name }}</td>
     <td>{{ $mgt->customerform }}</td>
-    <td>{{ $mgt->detail }}</td>
-    
-    <td><a class="btn btn-info" href="/update/{{ $mgt->id}}/edit">Edit</a></td>
-    <td><a class="btn btn-danger" href="/delete/{{ $mgt->id}}/delete">Delete</a></td>
+    <td>{{ $mgt->detail }}</td>    
+    <td>
+      <a class="btn btn-info" href="/update/{{ $mgt->id}}/edit">Edit</a>
+      <a class="btn btn-danger" href="/delete/{{ $mgt->id}}/delete">Delete</a>
+    </td>
   </tr>
 @endforeach
   </tbody>
 </table>
+<center><a class="btn btn-primary" href="{{ url('/home') }}"> Home</a></center>
 @endsection

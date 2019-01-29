@@ -15,10 +15,11 @@ class CreateMgtsworksTable extends Migration
     {
         Schema::create('mgtsworks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('name')->unsigned();
+            $table->integer('name')->unsigned()->nullable();
             $table->foreign('name')->references('id')->on('mgts');
             $table->string('mobile');
             $table->string('detail');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

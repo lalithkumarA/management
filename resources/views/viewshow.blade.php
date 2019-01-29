@@ -5,25 +5,26 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Management Name</th>
       <th>Mobile</th>
       <th>Detail</th>
-      <th>Management Name</th>
       <th>Action</th>
-
     </tr>
   </thead>
   <tbody>
   @foreach($tan as $mgtsworks)   
     <tr>
       <td>{{ $mgtsworks->id }}</td>
-     <td>{{ $mgtsworks->mobile }}</td>
+      <td>{{ $mgtsworks->mgt->name }}</td>
+      <td>{{ $mgtsworks->mobile }}</td>
       <td>{{ $mgtsworks->detail }}</td>
-       <td>{{ $mgtsworks->mgt->name }}</td>
-      <!-- 
-      <td><a class="btn btn-info" href="/update/{{ $mgtsworks->id}}/edit">Edit</a></td>
-      <td><a class="btn btn-danger" href="/delete/{{ $mgtsworks->id}}/delete">Delete</a></td> -->
+      <td>
+        <a class="btn btn-info" href="/updated/{{ $mgtsworks->id}}/editworkmgts">Edit</a>
+        <a class="btn btn-danger" href="/deleted/{{ $mgtsworks->id}}/deleted">Delete</a>
+      </td>
     </tr>
   @endforeach
   </tbody>
 </table>
+<center><a class="btn btn-primary" href="{{ url('/home') }}"> Home</a></center>
 @endsection

@@ -1,8 +1,10 @@
 @extends('layouts.app')
-<a href="{{ url('/workmgts') }}">workmgts</a>
-
-@section('content')
+ @section('content')
     <div class="container">
+    <div class="pull-left">
+    <h2>Add New Fields</h2>
+    <a class="btn btn-primary" href="{{ url('/workmgts') }}">workmgts</a>
+    </div>
         <form action="form" method="POST">
           {{ csrf_field() }}
             <div class="form-group">
@@ -25,7 +27,8 @@
             </div>
             <div class="form-group">        
               <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>            
+                <a class="btn btn-primary" href="{{ url('/show') }}"> Back</a>
               </div>
             </div>
         </form>  
